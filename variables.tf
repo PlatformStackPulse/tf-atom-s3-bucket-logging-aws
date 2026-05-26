@@ -1,7 +1,15 @@
-# -----------------------------------------------------------------------------
-# Module-Specific Variables
-#
-# Note: Standard labeling variables (enabled, namespace, tenant, environment,
-# stage, name, delimiter, attributes, tags, label_order, etc.) are provided
-# by context.tf via the tf-label module.
-# -----------------------------------------------------------------------------
+variable "bucket_id" {
+  description = "ID (name) of the S3 bucket to enable logging for"
+  type        = string
+}
+
+variable "target_bucket_id" {
+  description = "ID of the bucket where access logs will be stored"
+  type        = string
+}
+
+variable "target_prefix" {
+  description = "Prefix for log object keys (e.g. 'logs/')"
+  type        = string
+  default     = "logs/"
+}
