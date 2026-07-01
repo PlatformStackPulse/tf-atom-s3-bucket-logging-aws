@@ -1,6 +1,18 @@
 # Changelog
 
 
+<a name="v1.1.0"></a>
+## [v1.1.0](https://github.com/PlatformStackPulse/tf-atom-s3-bucket-logging-aws/compare/v1.0.1-fix-add-chglog-config.9...v1.1.0) (2026-05-26)
+
+### Documentation
+
+- **changelog:** update CHANGELOG.md [skip ci] ([87e0ba8](https://github.com/PlatformStackPulse/tf-atom-s3-bucket-logging-aws/commit/87e0ba83d9333a5ead0b76403f521b7bfd76cb02))
+
+### Maintenance
+
+- add .chglog configuration for changelog generation ([#2](https://github.com/PlatformStackPulse/tf-atom-s3-bucket-logging-aws/issues/2)) ([2f7fb4c](https://github.com/PlatformStackPulse/tf-atom-s3-bucket-logging-aws/commit/2f7fb4ce4457d6ef522f3ddf9278c4305e9dc9a8))
+
+
 <a name="v1.0.1-fix-add-chglog-config.9"></a>
 ## [v1.0.1-fix-add-chglog-config.9](https://github.com/PlatformStackPulse/tf-atom-s3-bucket-logging-aws/compare/v1.0.0...v1.0.1-fix-add-chglog-config.9) (2026-05-26)
 
