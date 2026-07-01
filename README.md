@@ -47,12 +47,19 @@ Configures server access logging for an S3 bucket, writing access logs to a desi
 
 ```hcl
 module "bucket_logging" {
-  source = "github.com/PlatformStackPulse/tf-atom-s3-bucket-logging-aws?ref=v1.0.0"
+  source = "git::https://github.com/PlatformStackPulse/tf-atom-s3-bucket-logging-aws.git?ref=v1.0.0"
 
-  context          = module.this.context
-  bucket_id        = module.bucket.bucket_id
-  target_bucket_id = module.logs_bucket.bucket_id
-  target_prefix    = "my-app/"
+  # tf-label identity (or pass context = module.this.context)
+  namespace = "eg"
+  stage     = "prod"
+  name      = "app"
+
+  # Required inputs
+  bucket_id        = module.bucket.bucket_id      # source bucket to log
+  target_bucket_id = module.logs_bucket.bucket_id # destination for access logs
+
+  # Optional (defaults to "logs/")
+  target_prefix = "my-app/"
 }
 ```
 
@@ -117,3 +124,22 @@ module "bucket_logging" {
 | <a name="output_id"></a> [id](#output\_id) | ID of the logging configuration |
 | <a name="output_target_bucket_id"></a> [target\_bucket\_id](#output\_target\_bucket\_id) | ID of the target logging bucket |
 <!-- END_TF_DOCS -->
+
+## Tests
+
+Unit tests run against a `mock_provider "aws"` at `plan` time — no AWS credentials
+or real resources are required. They assert only on plan-known values (the
+`enabled` flag, planned resource count, and input pass-throughs).
+
+| Test file | What it verifies |
+|-----------|------------------|
+| `tests/unit/main_test.tftest.hcl` | Resource is planned when enabled; `target_prefix` is threaded through; disabled produces zero resources and a `null` `id` output |
+
+Run them locally:
+
+```bash
+terraform init -backend=false
+terraform test -test-directory=tests/unit
+# or:
+make test-unit
+```
